@@ -1,0 +1,28 @@
+<Window x:Class="Launcher.UI.UserControls.DialogAsk"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Launcher.UI.UserControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" TextElement.FontWeight="Regular"
+        TextElement.FontSize="13" FontFamily="{DynamicResource MaterialDesignFont}" Background="White"
+        ResizeMode="NoResize" WindowStyle="None" SizeToContent="Height" Width="400"
+        WindowStartupLocation="CenterOwner">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <ColorZone Mode="Dark" Control.Padding="10" Control.BorderBrush="Orange" Control.BorderThickness="0,0,0,2">
+      <TextBlock x:Name="title" VerticalAlignment="Center">Title</TextBlock>
+    </ColorZone>
+    <StackPanel Grid.Row="1" Margin="10">
+      <TextBlock x:Name="description" TextWrapping="Wrap"/>
+      <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button Click="onClickOnValidButton" Margin="5">Oui</Button>
+        <Button Click="onClickOnCancelButton" Margin="5">Non</Button>
+      </StackPanel>
+    </StackPanel>
+  </Grid>
+</Window>

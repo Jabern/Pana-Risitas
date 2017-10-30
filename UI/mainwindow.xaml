@@ -1,0 +1,112 @@
+<Window x:Class="Launcher.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher.UI"
+        xmlns:controls="clr-namespace:Launcher.UI.UserControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        MouseDown="onWindowMouseDown" Height="600" Width="1000"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" TextElement.FontWeight="Regular"
+        TextElement.FontSize="13" FontFamily="{DynamicResource MaterialDesignFont}" WindowStyle="None"
+        ResizeMode="CanResizeWithGrip" Title="PanaMonde">
+  <WindowChrome.WindowChrome>
+    <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
+  </WindowChrome.WindowChrome>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <ColorZone MouseDoubleClick="onMouseDoubleClickOnWindowHeader" Mode="Dark" Control.Padding="10"
+               Control.BorderBrush="Orange" Control.BorderThickness="0,0,0,2">
+      <DockPanel>
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" FlowDirection="LeftToRight">
+          <Image x:Name="logo" Margin="5" Width="50"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" FlowDirection="RightToLeft">
+          <Button Click="onClickOnQuitButton" Background="Transparent" BorderBrush="Transparent">
+            <PackIcon Kind="WindowClose" Control.Foreground="OrangeRed" FrameworkElement.Width="24"
+                      FrameworkElement.Height="24"/>
+          </Button>
+          <Button Click="onClickOnMaximizeAndRestoreButton" Background="Transparent" BorderBrush="Transparent">
+            <PackIcon Kind="WindowMaximize" Control.Foreground="Gray" FrameworkElement.Width="24"
+                      FrameworkElement.Height="24"/>
+          </Button>
+          <Button Click="onClickOnMinimizeButton" Background="Transparent" BorderBrush="Transparent">
+            <PackIcon Kind="WindowMinimize" Control.Foreground="Gray" FrameworkElement.Width="24"
+                      FrameworkElement.Height="24"/>
+          </Button>
+        </StackPanel>
+      </DockPanel>
+    </ColorZone>
+    <Grid Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid Row="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="5">
+          <Button Click="onClickBtnConnect" x:Name="btnConnect" ToolTip="Connexion rapide" Margin="5" Padding="5"
+                  BorderBrush="Transparent" Background="Transparent" Width="24" Height="24">
+            <PackIcon Kind="Play" Control.Foreground="Green"/>
+          </Button>
+          <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="LightGray"/>
+          <Button Click="onClickBtnAddFavorites" x:Name="btnAddFavorites" ToolTip="Ajout d'un favoris" Margin="5"
+                  Padding="5" Background="Transparent" BorderBrush="Transparent" Width="24" Height="24">
+            <PackIcon Kind="Plus" Control.Foreground="Gray"/>
+          </Button>
+          <Button Click="onClickBtnRemoveFavorites" x:Name="btnRemoveFavorites" ToolTip="Suppression d'un favoris"
+                  Margin="5" Padding="5" Background="Transparent" BorderBrush="Transparent" Width="24" Height="24">
+            <PackIcon Kind="Delete" Control.Foreground="Gray"/>
+          </Button>
+          <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="LightGray"/>
+          <Button Click="onClickBtnSettings" x:Name="btnSettings" ToolTip="Réglages" Margin="5" Padding="5"
+                  Background="Transparent" BorderBrush="Transparent" Width="24" Height="24">
+            <PackIcon Kind="Settings" Control.Foreground="Gray"/>
+          </Button>
+          <Button Click="onClickBtnWebSite" ToolTip="http://www.panamonde.fr/" Margin="5" Padding="5"
+                  Background="Transparent" BorderBrush="Transparent" Width="25" Height="24">
+            <PackIcon Kind="Web" Control.Foreground="Gray"/>
+          </Button>
+          <Button ToolTip="Crédits" Margin="5" Padding="5" Background="Transparent" BorderBrush="Transparent"
+                  Width="25" Height="25">
+            <PackIcon Kind="InformationOutline" Control.Foreground="Gray"/>
+          </Button>
+          <Button IsEnabled="false" ToolTip="Coming soon..." Margin="5" Padding="5" Background="Transparent"
+                  BorderBrush="Transparent" Width="25" Height="25">
+            <PackIcon Kind="Shopping" Control.Foreground="LightSkyBlue"/>
+          </Button>
+          <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="LightGray"/>
+          <TextBox TextChanged="onUsernameHasBeenChanged" x:Name="textBoxUserName" Margin="10,0,0,0" Width="180"
+                   VerticalAlignment="Center"/>
+        </StackPanel>
+        <TextBlock Margin="10" FontStyle="Italic" Grid.Column="1">Version 0.1</TextBlock>
+      </Grid>
+      <controls:ServerListView x:Name="serversListsView" Grid.Row="1"/>
+      <Grid Row="2">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal">
+          <Button Click="onTabSelected" x:Name="btnFavorites" Tag="2" Margin="5" Foreground="Gray"
+                  Background="Transparent" BorderThickness="0">Favorites</Button>
+          <Button Click="onTabSelected" Tag="0" Margin="5" Foreground="Gray" Background="Transparent"
+                  BorderThickness="0">Internet</Button>
+          <Button Click="onTabSelected" Tag="1" Margin="5" Foreground="Gray" Background="Transparent"
+                  BorderThickness="0">Hosted</Button>
+        </StackPanel>
+        <PackIcon x:Name="gameIndicator" FrameworkElement.Margin="10" Grid.Column="1" Kind="Check"
+                  Control.Foreground="Green" FrameworkElement.VerticalAlignment="Center"/>
+      </Grid>
+      <ProgressBar x:Name="progressBarDownload" Grid.Row="3"/>
+    </Grid>
+  </Grid>
+</Window>

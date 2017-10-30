@@ -1,0 +1,67 @@
+<Window x:Class="Launcher.UI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher.UI"
+        xmlns:controls="clr-namespace:Launcher.UI.UserControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        MouseDown="onWindowMouseDown" Loaded="onWindowLoaded" Title="MainWindow" Width="300"
+        SizeToContent="Height" TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular" TextElement.FontSize="13"
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStyle="None" ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterOwner">
+  <WindowChrome.WindowChrome>
+    <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
+  </WindowChrome.WindowChrome>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <ColorZone Mode="Dark" Control.Padding="10" Control.BorderBrush="Orange" Control.BorderThickness="0,0,0,2">
+      <DockPanel>
+        <TextBlock VerticalAlignment="Center">Paramètres</TextBlock>
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" FlowDirection="RightToLeft">
+          <Button Click="onClickOnQuitButton" Background="Transparent" BorderBrush="Transparent">
+            <PackIcon Kind="WindowClose" Control.Foreground="OrangeRed" FrameworkElement.Width="24"
+                      FrameworkElement.Height="24"/>
+          </Button>
+        </StackPanel>
+      </DockPanel>
+    </ColorZone>
+    <Grid Row="1" Margin="20">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <TextBlock>
+        Répértoire vers la racine de GTASA :
+      </TextBlock>
+      <TextBox x:Name="textBoxGTADirectory" Grid.Column="0" Grid.Row="1" Width="Auto"/>
+      <Button Click="onClickOnGTAFolder" Grid.Column="1" Grid.Row="1" Margin="5" Padding="5"
+              Background="Transparent" BorderBrush="Transparent" Width="24" Height="24">
+        <PackIcon Kind="Folder" Control.Foreground="Gray"/>
+      </Button>
+      <TextBlock Grid.Row="3">
+        Répértoire de stockage des mods :
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap" FontSize="10" FontStyle="Italic" Grid.Row="4">
+        Choisissez le répertoire de votre choix, ce dernier contiendra les archives des mods téléchargés.
+      </TextBlock>
+      <TextBox x:Name="textBoxModsDirectory" Grid.Row="5" Grid.Column="0" Width="Auto"/>
+      <Button Click="onClickOnModsFolder" Grid.Row="6" Grid.Column="1" Margin="5" Padding="5"
+              Background="Transparent" BorderBrush="Transparent" Width="24" Height="24">
+        <PackIcon Kind="Folder" Control.Foreground="Gray"/>
+      </Button>
+    </Grid>
+  </Grid>
+</Window>
